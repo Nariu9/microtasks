@@ -1,10 +1,10 @@
-import React, {MouseEvent, useState} from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import {Money} from "./Money";
+import {MoneyButton} from "./MoneyButton";
 
-/*import {Button} from "./components/Button";*/
 
-type FilterTyle = 'All' | 'RUBLS' | 'Dollars'
+type FilterType = 'All' | 'RUBLS' | 'Dollars'
 
 function App() {
 
@@ -19,25 +19,29 @@ function App() {
         {banknots: 'RUBLS', value: 50, number: ' v1234567890'},
     ])
 
-    const [filter, setFilter] = useState<FilterTyle>("All")
+    const [filter, setFilter] = useState<FilterType>("All")
 
     let currentMoney = money;
 
-    if (filter === "RUBLS"){
-        currentMoney = money.filter(filtredMoney=>filtredMoney.banknots==="RUBLS")
+    if (filter === "RUBLS") {
+        currentMoney = money.filter(filtredMoney => filtredMoney.banknots === "RUBLS")
     } else if (filter === "Dollars") {
-        currentMoney = money.filter(filtredMoney=>filtredMoney.banknots==="Dollars")
+        currentMoney = money.filter(filtredMoney => filtredMoney.banknots === "Dollars")
     }
 
 
-
-    const onClickFilterHandler =(nameButton:FilterTyle)=> {
+    const onClickFilterHandler = (nameButton: FilterType) => {
         setFilter(nameButton)
     }
 
     return (
         <>
-            <Money currentMoney={currentMoney} callback={onClickFilterHandler}/>
+            <Money currentMoney={currentMoney}/>
+            <div style={{marginLeft: "35px"}}>
+                <MoneyButton name={"All"} callback={() => onClickFilterHandler("All")}/>
+                <MoneyButton name={"RUBLS"} callback={() => onClickFilterHandler("RUBLS")}/>
+                <MoneyButton name={"Dollars"} callback={() => onClickFilterHandler("Dollars")}/>
+            </div>
             {/*<ul>
                 {currentMoney.map((el, index) => {
                     return (

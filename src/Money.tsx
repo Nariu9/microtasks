@@ -1,11 +1,7 @@
 import React from "react";
 
-type FilterTyle = 'All' | 'RUBLS' | 'Dollars'
-
 type MoneyPropsType = {
     currentMoney:Array<currentMoneyType>
-    callback:(a:FilterTyle)=>void
-
 }
 
 type currentMoneyType = {
@@ -28,11 +24,6 @@ export const Money = (props:MoneyPropsType) => {
                     )
                 })}
             </ul>
-            <div style={{marginLeft: "35px"}}>
-                <button onClick={() => props.callback("All")}>All</button>
-                <button onClick={() => props.callback("RUBLS")}>RUBLS</button>
-                <button onClick={() => props.callback("Dollars")}>Dollars</button>
-            </div>
         </>
     )
 }
